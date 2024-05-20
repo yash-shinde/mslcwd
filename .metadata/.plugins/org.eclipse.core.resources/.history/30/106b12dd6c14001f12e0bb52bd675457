@@ -1,9 +1,0 @@
-package com.org.ratings.repository;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.org.ratings.entities.Rating;
-
-public interface RatingsRepository extends MongoRepository<Rating, String>{
-
-}

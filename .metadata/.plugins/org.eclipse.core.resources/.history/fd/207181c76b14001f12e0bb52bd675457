@@ -1,5 +1,0 @@
-package com.org.ratings.repository;
-
-public interface RatingsRepository {
-
-}
