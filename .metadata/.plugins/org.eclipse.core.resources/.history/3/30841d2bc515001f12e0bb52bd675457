@@ -1,0 +1,5 @@
+package com.tutorial.user.service.entities;
+
+public class Hotel {
+
+}

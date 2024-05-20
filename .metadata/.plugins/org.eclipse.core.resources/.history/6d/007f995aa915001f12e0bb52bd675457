@@ -1,0 +1,10 @@
+
+#define the host
+eureka:
+  instance:
+    host: localhost
+#do not allow the registry to be registered
+  client : 
+    register-with-eureka : false
+    fetch-registry : false
+    

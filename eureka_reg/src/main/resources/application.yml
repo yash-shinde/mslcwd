@@ -1,0 +1,13 @@
+
+#define the host
+eureka:
+  instance:
+    hostname: localhost
+#do not allow the registry to be registered
+  client : 
+    register-with-eureka : false
+    fetch-registry : false
+    
+server:
+  port : 8761
+    

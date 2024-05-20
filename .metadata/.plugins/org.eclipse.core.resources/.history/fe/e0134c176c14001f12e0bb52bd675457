@@ -1,0 +1,5 @@
+package com.org.ratings.services;
+
+public interface RatingService {
+
+}

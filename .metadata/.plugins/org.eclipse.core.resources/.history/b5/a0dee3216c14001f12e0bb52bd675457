@@ -1,0 +1,10 @@
+package com.org.ratings.services;
+
+public interface RatingService {
+
+	//create
+	
+	//get all
+	
+	//get all by user id
+}

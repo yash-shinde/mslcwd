@@ -1,0 +1,6 @@
+package com.org.ratings.entities;
+
+
+public class Rating {
+
+}

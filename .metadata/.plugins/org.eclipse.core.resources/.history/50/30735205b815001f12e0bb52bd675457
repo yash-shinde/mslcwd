@@ -1,0 +1,53 @@
+package com.tutorial.user.service.services;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.tutorial.user.service.entities.Rating;
+import com.tutorial.user.service.entities.Users;
+import com.tutorial.user.service.exceptions.ResourceNotFoundException;
+import com.tutorial.user.service.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository userRepo;
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+	@Override
+	public Users saveUser(Users user) {
+		String randomUUID = UUID.randomUUID().toString();
+		user.setId(randomUUID);
+		return userRepo.save(user);
+	}
+
+	@Override
+	public List<Users> getAllUSers() {
+		return userRepo.findAll();
+	}
+
+	@Override
+	public Users getUserById(String id) {
+		// get single user by id
+		Users user = userRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User with given Id not found on Server"));
+		// fetch ratings for the above user
+		// http://localhost:8082/ratings/user/c697161f-81e3-4ac7-8495-4a51db0cc35c
+		ArrayList<Rating> forObject = restTemplate
+				.getForObject("http://localhost:8082/ratings/user/"+id, ArrayList<Rating>.class);
+		logger.info("{}",forObject);
+		return user;
+	}
+
+}
